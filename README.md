@@ -10,7 +10,8 @@ The current version features:
 - A Tool that allows the creation of videos that serve as benchmark for the testing of CV Systems
 - Supports testing in different vidibility conditions like bad camera settings or bad weather
 
-## Visuals
+![heavy rain](/images/visual.png)
+Adversarial example at rainy weather
 
 
 ## Installation

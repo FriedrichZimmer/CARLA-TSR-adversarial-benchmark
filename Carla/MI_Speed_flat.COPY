@@ -1,0 +1,31 @@
+Begin Object Class=/Script/Engine.MaterialInstanceConstant Name="MI_Speed_flat"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   ParameterStateId=E857A5164EDE51C4A420BD9415C0D44B
+   Parent=Material'"/Game/Carla/Static/GenericMaterials/00_MastersOpt/M_MaterialMaster.M_MaterialMaster"'
+   ScalarParameterValues(0)=(ParameterInfo=(Name="RefractionDepthBias"))
+   TextureParameterValues(0)=(ParameterInfo=(Name="Normal"),ParameterValue=Texture2D'"/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_n.T_Flat_n"',ExpressionGUID=19C7FA164533765AAC0A3EA5B41C1DCA)
+   TextureParameterValues(1)=(ParameterInfo=(Name="BaseColor"),ParameterValue=Texture2D'"/Game/Carla/Static/TrafficSign_GermanAdversarial/tempo60_orig.tempo60_orig"',ExpressionGUID=5E7F06934C4EC76740EBF4B4237FA11C)
+   BasePropertyOverrides=(OpacityMaskClipValue=0.333300)
+   ReferencedTextureGuids(0)=D8DAB37B478C084829FAD7894E634A23
+   ReferencedTextureGuids(1)=A8CB1BBD4B26959E197630BF1535DF63
+   ReferencedTextureGuids(2)=EA008E1646F640B197381CBC418F1212
+   CachedReferencedTextures(0)=None
+   CachedReferencedTextures(1)=Texture2D'"/Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse"'
+   CachedReferencedTextures(2)=Texture2D'"/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/DebugNumberStrip.DebugNumberStrip"'
+   CachedReferencedTextures(3)=Texture2D'"/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/DebugNumberPeriod.DebugNumberPeriod"'
+   CachedReferencedTextures(4)=Texture2D'"/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/flipbook.flipbook"'
+   CachedReferencedTextures(5)=Texture2D'"/Game/Carla/Static/Particles/rain/T_ripples_sheet_HD_n.T_ripples_sheet_HD_n"'
+   CachedReferencedTextures(6)=Texture2D'"/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_White_d.T_Flat_White_d"'
+   CachedReferencedTextures(7)=Texture2D'"/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_n.T_Flat_n"'
+   CachedReferencedTextures(8)=Texture2D'"/Game/Carla/Static/Static/Materials/BusStop/T_busStop_Glow.T_busStop_Glow"'
+   CachedReferencedTextures(9)=Texture2D'"/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_orm.T_Flat_orm"'
+   TextureStreamingDataVersion=1
+   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Flat_n",TextureReference=/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_n.T_Flat_n)
+   TextureStreamingData(1)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Flat_orm",TextureReference=/Game/Carla/Static/GenericMaterials/00_MastersOpt/Textures/T_Flat_orm.T_Flat_orm)
+   TextureStreamingData(2)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="tempo60_orig",TextureReference=/Game/Carla/Static/TrafficSign_GermanAdversarial/tempo60_orig.tempo60_orig)
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=4DE7C3D542B7EC7641B3968F0E017587
+End Object

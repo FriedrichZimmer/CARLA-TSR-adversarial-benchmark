@@ -8,18 +8,19 @@ This script can also be used for generating training images for new traffic sign
 The current version features:
 - One map with adversarial examples for traffic sign recognition and lane detection
 - A Tool that allows the creation of videos that serve as benchmark for the testing of CV Systems
-- Supports testing in different vidibility conditions like bad camera settings or bad weather
+- A collection of 15 textures of normal german traffic signs and 12 textures for adversarial examples
+- Supports testing in different visibility conditions like bad camera settings or bad weather
 
 ![heavy rain](/images/visual.png)
 Adversarial example at rainy weather
 
 
 ## Installation
-This project was developed on Windows 11 and Python 3.8.
-1. Install Carla 9.15 for Windows (Available on https://carla.org/2023/11/10/release-0.9.15/)
+This project was developed on Windows 11 and Python 3.10.
+1. Install Carla 9.15 for Windows (Available on https://carla.org/2023/11/10/release-0.9.15/). Make sure that Carla is working properly on your computer.
 2. Download the map Town07_attacked_09.15.2-1.zip from https://www.dropbox.com/scl/fi/jli3k8np295r0lgt23rvh/Town07_attacked_0.9.15.2-1.zip?rlkey=r8a54thl01lj1r80i6trn6fzo&st=1v9si945&dl=0
-3. Unzip it and copy the content into the carla main folder (overwrite when needed)
-4. Install the needed python frameworks with pip
+3. Unzip it and copy the content into the carla main folder (overwrite when needed).
+4. Install the needed python frameworks with pip.
 ```
 pip install numpy, carla, opencv-python, Pillow
 ```
@@ -77,8 +78,7 @@ This project is licensed under the MIT license.
 Copyright 2024 (c) Friedrich Zimmer at ARRK Engineering
 
 ## Project status
-The current version allows to generate 
-Until August 2024, I will continuously update this project. After this it depends on demand and on the time I have got available for implementing improvements.
+Until my Master Thesis is finsihed end of August 2024, I will continuously update this project. After this it depends on demand and on the time I have got available for implementing improvements.
 
 ***
 

@@ -1,13 +1,13 @@
 """Copyright (c) 2024 Friedrich Zimmer
 RGB Camera Class and standard setings used by all tests.
 """
-
+import logging
 from time import sleep
 
 import carla
 import os
 from util.test_class import cam_lambda
-# import logging
+
 
 # list of all camera tests
 camera_tests = ['00_default_carla',
@@ -92,15 +92,15 @@ def set_camera_test(test, camera_bp):
 class RGBCamera:
     """class for cameras. Needs to be defined before testing and then submitted to the CarlaTestRun Object"""
 
-    def __init__(self, x_cam=1360, y_cam=800, fov=120, tick=0.1, test_list=None, campos=carla.Location(x=0.6, z=1.45),
-                 save_time=0.25):
+    def __init__(self, cam_name="", x_cam=1360, y_cam=800, fov=120, tick=0.0, test_list=None,
+                 campos=carla.Transform(carla.Location(x=-2.3, z=0.4), carla.Rotation(yaw=180.0)), save_time=0.25):
         """Init with camera configuration data. Standard resolution is the same as in the GTSRDB dataset
 
         Args:
             x_cam (int): x resolution of the camera
             y_cam (int): y resolution of the camera
             fov (int): field of view of the camera in degrees
-            tick (float): time between images (= 1/framerate)
+            tick (float): time between images (= 1/framerate) 0.0 means its synchronous with the world tick
             test_list ([str]): list of camera settings
             campos (Location): position of the camera in relation to the vehicle
             save_time (float): sleep time used for saving images inbetween ticks
@@ -113,15 +113,19 @@ class RGBCamera:
             self.test_list = ['01_default_new']
         else:
             self.test_list = test_list
-        self.transform = carla.Transform(campos)
+        self.transform = campos
         self.save_time = save_time
+        if cam_name != "":
+            cam_name = cam_name + "_"
+        self.cam_name = cam_name
 
         self.cameras = []
-        self.logger = None
+        self.logger = logging.getLogger('logger')
 
-    def log_basic_info(self, logger):
+    def log_basic_info(self, logger=None):
         """receives the logger from the Test script and logs the used camera settings"""
-        self.logger = logger
+        if logger:
+            self.logger = logger
         self.logger.info(f'Resulution: {self.x_cam}x{self.y_cam}')
         self.logger.info(f'FOV: {self.fov}°')
         self.logger.info(f'Sensor_Tick: {self.sensor_tick} seconds')
@@ -131,12 +135,16 @@ class RGBCamera:
         """Creates and configures a single camera based on the carla Blueprint
 
         Args:
-            blueprint_library: Bluepront library of the current map
+            blueprint_library: Blueprint library of the current map
             i (int): Iterator for the list of cameras
 
         Returns:
             camera_bp (BluePrint): RGB Camera with the desired settings
         """
+        if i > len(self.test_list)-1:
+            self.logger.error(f'Camera does not exist. Switching to default. ' + str(i))
+            i = 0
+
         self.logger.info('Camera:' + self.test_list[i])
         camera_bp = blueprint_library.find('sensor.camera.rgb')
         camera_bp.set_attribute('image_size_x', str(self.x_cam))
@@ -165,7 +173,7 @@ class RGBCamera:
             camera = world.spawn_actor(camera_bp, self.transform, attach_to=vehicle)
             self.cameras.append(camera)
             # create folder for resulting images
-            cam_folder = os.path.join(test_folder, self.test_list[i])
+            cam_folder = os.path.join(test_folder, self.cam_name + self.test_list[i])
             if not os.path.exists(cam_folder):
                 self.logger.info(f'Creating folder: {cam_folder}')
                 os.makedirs(cam_folder)

@@ -22,6 +22,7 @@ cycles = 200
 
 # list of cameras. Full list can be imported/copied from camera_utils.py
 camera_tests = ['01_default_new',
+                '02_auto_exposure',
                 '20_low_shutter_speed',
                 '30_iso_400',
                 '40_high_gamma',
@@ -35,7 +36,7 @@ def main(result_path):
     cam = RGBCamera(test_list=camera_tests)
 
     test_name = "t7_tsr_sunset_all"
-    test = CarlaTestRun(cam, name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
+    test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
     test.set_weather(sunset(0, 1.0))
     test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
 

@@ -33,7 +33,7 @@ def main(result_path):
     cam = RGBCamera(test_list=camera_tests)
 
     test_name = "t7_tsr_sunset_all"
-    test = CarlaTestRun(cam, name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
+    test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
     test.set_weather(sunset(0))
     test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
 

@@ -42,7 +42,7 @@ camera_tests = ['00_default_carla',
 
 def main(folder):
     cam = RGBCamera(test_list=camera_tests)
-    test = CarlaTestRun(cam, name=testname, spawn_point=spawn_point, ticks=cycles, folder=folder)
+    test = CarlaTestRun([cam], name=testname, spawn_point=spawn_point, ticks=cycles, folder=folder)
     test.run_texture(texture_list, ROUND_TRAFFIC_SIGNS_TOWN7)
     test.end()
 

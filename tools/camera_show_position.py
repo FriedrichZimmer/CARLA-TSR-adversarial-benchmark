@@ -6,13 +6,16 @@ shows position of the cameras in the map on a standing vehicle
 import glob
 import os
 import sys
+from logging import Logger
 
-from util.camera_utils import setup_rgb_camera
+# from util.camera_utils import setup_rgb_camera
 
 import carla
 
 import random
 from time import strftime, localtime, sleep
+
+from util.camera_utils import RGBCamera
 
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
@@ -26,7 +29,7 @@ testname = 'camera_setting_test'
 RESULT_FOLDER = os.path.join( 'D:/Results/', strftime('%Y%m%d_%H%M', localtime()) + '_' + testname)
 print(RESULT_FOLDER)
 
-spawn_point = 20
+
 wait_between_tick = 0.4
 tick = 0.01
 
@@ -57,8 +60,10 @@ def main():
         print(color)
         bp_vehicle.set_attribute('color', color)
 
+    spawn_point = random.randrange(100)
     transform = world.get_map().get_spawn_points()[spawn_point]
     print(transform.location)
+
 
     vehicle = world.spawn_actor(bp_vehicle, transform)
     actor_list.append(vehicle)
@@ -69,24 +74,29 @@ def main():
     spectator.set_transform(transform)
 
     # load camera bp
-    camera_bp = setup_rgb_camera(blueprint_library, x_cam, y_cam, fov, sensor_tick)
-    camera_transform = carla.Transform(carla.Location(x=0.5, z=1.42))
+    cam = RGBCamera(x_cam, y_cam, fov, sensor_tick)
+    camera_bp = cam.setup_rgb_camera(blueprint_library, 0)
+    camera_transform = carla.Transform(carla.Location(x=0.6, z=1.45))
     camera = world.spawn_actor(camera_bp, camera_transform, attach_to=vehicle)
     actor_list.append(camera)
 
-    c2_transform = carla.Transform(carla.Location(x=2.35, z=0.4))
+    # front
+    c2_transform = carla.Transform(carla.Location(x=2.35, z=0.4), carla.Rotation(pitch=-20.0))
     camera2 = world.spawn_actor(camera_bp, c2_transform, attach_to=vehicle)
     actor_list.append(camera2)
 
-    c3_transform = carla.Transform(carla.Location(x=-2.3, z=0.4), carla.Rotation(yaw=180.0))
+    # rear
+    c3_transform = carla.Transform(carla.Location(x=-2.3, z=0.4), carla.Rotation(yaw=180.0, pitch=-20.0))
     camera3 = world.spawn_actor(camera_bp, c3_transform, attach_to=vehicle)
     actor_list.append(camera2)
 
-    c4_transform = carla.Transform(carla.Location(x=0.55, y=1.1, z=1.1), carla.Rotation(yaw=90.0))
+    # right
+    c4_transform = carla.Transform(carla.Location(x=0.55, y=1.1, z=1.1), carla.Rotation(yaw=90.0, pitch=-20.0))
     camera4 = world.spawn_actor(camera_bp, c4_transform, attach_to=vehicle)
     actor_list.append(camera2)
 
-    c5_transform = carla.Transform(carla.Location(x=0.55, y=-1.1, z=1.1), carla.Rotation(yaw=270.0))
+    # left
+    c5_transform = carla.Transform(carla.Location(x=0.55, y=-1.1, z=1.1), carla.Rotation(yaw=270.0, pitch=-20.0))
     camera5 = world.spawn_actor(camera_bp, c5_transform, attach_to=vehicle)
     actor_list.append(camera2)
 

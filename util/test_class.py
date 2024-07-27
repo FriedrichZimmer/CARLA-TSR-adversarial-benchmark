@@ -27,7 +27,7 @@ current_tick = 0
 
 def cam_lambda(image, img_path, t, logger):
     """in order to avoid that all cameras try to save their pictures at once.
-    Needs to be in testdefinition for global variable.Is used by camera lambda
+    Needs to be in test definition for global variable.Is used by camera lambda
 
     Args:
         image (Image): image that was created by a camera
@@ -36,18 +36,20 @@ def cam_lambda(image, img_path, t, logger):
         logger (Logger): Logger object for showing and recording the progress
         """
 
-    # sleep time to give the background processes enough time to store the image on the hard disk
-    sleep(t)
     global current_tick
-    image.save_to_disk(f'{img_path}/{current_tick:04d}.png')
-    logger.info(f'Saved {img_path}/{current_tick:04d}.png')
+    img = f'{img_path}/{current_tick:04d}.png'
+    # sleep time to give the background processes enough time to store the image of the other images of the same tick
+    # on the hard disk
+    sleep(t)
+    image.save_to_disk(img)
+    logger.info(f'Saved {img}')
 
 
 def carla_init(tick, logger, town=None):
     """for connecting to a client and initiating the map
 
     Args:
-        tick (float): ticktime of the world in seconds
+        tick (float): tick time of the world in seconds
         logger (Logger): Logger object for showing and recording the progress
         town (str): Name of the test town to make sure the correct map is loaded before starting the test
     """
@@ -78,12 +80,12 @@ def carla_init(tick, logger, town=None):
 class CarlaTestRun:
     """This is the main class for performing a test with carla. The result is folder with subfolders full of images"""
 
-    def __init__(self, cam, name='generic_test', folder='D:/Results/', spawn_point=79, ticks_prep=50, ticks=200,
+    def __init__(self, cameras, name='generic_test', folder='D:/Results/', spawn_point=79, ticks_prep=50, ticks=200,
                  tick_length=0.05, town=None):
         """ Initiates and configures a Testrun
 
         Args:
-            cam (Camera): Object that defines all cameras that will be added to the vehicle
+            cameras ([Camera]): Array of Camera objects that defines all cameras that will be added to the vehicle
             name (str): Test name will be used for labeling the directory
             folder (str): Basic folder for test results
             spawn_point (int): ID of the spawn point of the vehicle in the current map
@@ -92,7 +94,7 @@ class CarlaTestRun:
             tick_length (float): Length of a world tick in seconds
             town (str): Name of the test town to make sure the correct map is loaded before starting the test
         """
-        self.cam = cam
+        self.cameras = cameras
         self.name = name
         # self.spawn_point = spawn_point
         self.ticks_prep = ticks_prep
@@ -133,7 +135,8 @@ class CarlaTestRun:
         logger.info(f'Preparation Ticks: {self.ticks_prep}')
         logger.info(f'Recording Ticks: {self.ticks}')
         logger.info(f'Ticks: {self.tick_length} Seconds')
-        self.cam.log_basic_info(logger)
+        for cam in self.cameras:
+            cam.log_basic_info(logger)
         return logger
 
     def spawn_transform(self):
@@ -196,7 +199,8 @@ class CarlaTestRun:
             sleep(self.tick_length)
         sleep(1)
 
-        self.cam.attach_cameras(self.world, vehicle, test_folder)
+        for cam in self.cameras:
+            cam.attach_cameras(self.world, vehicle, test_folder)
 
         # testcycle
         global current_tick
@@ -204,12 +208,13 @@ class CarlaTestRun:
             self.logger.info(f'Tick {current_tick} Speed {vehicle.get_velocity().length()} m/s')
             self.world.tick()
             # camera threads need time to save images
-            self.cam.tick_sleep()
+            self.cameras[0].tick_sleep()
 
         # give the camera threads enough time to save the images
         sleep(10)
 
-        self.cam.destroy_all()
+        for cam in self.cameras:
+            cam.destroy_all()
         self.logger.info('destroy vehicle')
         vehicle.destroy()
 

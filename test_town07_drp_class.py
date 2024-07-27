@@ -37,7 +37,7 @@ camera_tests = ['00_default_carla',
 
 def main(result_path):
     cam = RGBCamera(test_list=camera_tests)
-    test = CarlaTestRun(cam, name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
+    test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
     test.single_test_cycle('Default')
     test.end()
 

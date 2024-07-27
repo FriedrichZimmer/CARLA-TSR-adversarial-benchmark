@@ -83,8 +83,27 @@ def set_camera_test(test, camera_bp):
     elif test == '63_large_fstop_iso':
         camera_bp.set_attribute('fstop', '2.8')
         camera_bp.set_attribute('iso', '400')
-    elif test == '70_npp':
-        camera_bp.set_attribute('enable_postprocess_effects', 'False')
+    elif test == '70_distort_lens_circle_falloff_1':
+        camera_bp.set_attribute('lens_circle_falloff', '1.0')
+    elif test == '71_distort_lens_circle_falloff_9':
+        camera_bp.set_attribute('lens_circle_falloff', '9.0')
+    elif test == '72_lens_circle_multiplier_5':
+        camera_bp.set_attribute('lens_circle_multiplier', '5.0')
+    elif test == '73_lens_k_-10':
+        camera_bp.set_attribute('lens_k', '-10.0')
+    elif test == '74_lens_k_10':
+        camera_bp.set_attribute('lens_k', '10.0')
+    elif test == '75_lens_kcube_-10':
+        camera_bp.set_attribute('lens_kcube', '-10.0')
+    elif test == '76_lens_kcube_10':
+        camera_bp.set_attribute('lens_kcube', '10.0')
+    elif test == '80_lens_circle_multiplier_1':
+        camera_bp.set_attribute('lens_circle_multiplier', '1.0')
+    elif test == '81_lens_circle_multiplier_2':
+        camera_bp.set_attribute('lens_circle_multiplier', '2.0')
+    elif test == '82_lens_circle_multiplier_10':
+        camera_bp.set_attribute('lens_circle_multiplier', '10.0')
+
     else:
         print('WARNING! Unknown settings: ' + test)
 
@@ -93,7 +112,7 @@ class RGBCamera:
     """class for cameras. Needs to be defined before testing and then submitted to the CarlaTestRun Object"""
 
     def __init__(self, cam_name="", x_cam=1360, y_cam=800, fov=120, tick=0.0, test_list=None,
-                 campos=carla.Transform(carla.Location(x=-2.3, z=0.4), carla.Rotation(yaw=180.0)), save_time=0.25):
+                 campos=carla.Transform(carla.Location(x=0.6, z=1.45)), save_time=0.25):
         """Init with camera configuration data. Standard resolution is the same as in the GTSRDB dataset
 
         Args:

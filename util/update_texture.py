@@ -32,7 +32,7 @@ TS_TEXTURE_CIRCLE = [
     ['Speed_60#Speed_120', 'images\\textures_traffic_sign\\woit_60_120.png'],
     ['KFC#Stop', 'images\\textures_traffic_sign\\sita_kfc_stop.png'],
     ['Texaco#No_Over', 'images\\textures_traffic_sign\\sita_texaco_uebvb.png'],
-    ['Speed_100#Speed_40', 'images\\textures_traffic_sign\\tempo100#40-wei_512.png'],
+    ['Speed_100#Speed_30', 'images\\textures_traffic_sign\\tempo100#30-wei_512.png'],
     ['Speed_40#Speed_60', 'images\\textures_traffic_sign\\jia_40_60.png']
 ]
 

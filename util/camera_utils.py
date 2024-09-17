@@ -145,7 +145,7 @@ class RGBCamera:
         """receives the logger from the Test script and logs the used camera settings"""
         if logger:
             self.logger = logger
-        self.logger.info(f'Resulution: {self.x_cam}x{self.y_cam}')
+        self.logger.info(f'Resolution: {self.x_cam}x{self.y_cam}')
         self.logger.info(f'FOV: {self.fov}°')
         self.logger.info(f'Sensor_Tick: {self.sensor_tick} seconds')
         self.logger.info(f'List of cameras: {self.test_list}')

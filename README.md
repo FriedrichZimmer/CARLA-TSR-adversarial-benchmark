@@ -67,11 +67,11 @@ Some ideas for the future:
 ## Support
 For small questions or requests, you can send an E-Mail to friedrich.zimmer@arrk-engineering.com.
 
-My employer, ARRK Engineering GmbH is an engineering service provider for the automotive industry.
-For larger tasks, we can offer a more profound simulation or adaption to specific needs.
+My employer, https://engineering.arrk.com/ is an engineering service provider for the automotive industry.
+For specific needs, we are happy to offer the creation a more profound simulation that also creates the input for HiL or SiL testing.
 
 ## Contributing
-If you have got additional adversarial examples, I'm always interested in adding them. If you want to implement some ideas mentioned you are free to create a branch and I will eventually merge this into the main branch.
+If you have got additional adversarial examples, I'm always interested in adding them. And if you want to implement some of the ideas mentioned, you are free to create a branch and I will eventually merge this into the main branch.
 
 ## License
 This project is licensed under the MIT license.

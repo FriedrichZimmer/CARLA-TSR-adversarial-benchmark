@@ -10,11 +10,10 @@ from cv2 import imread, IMREAD_COLOR, VideoWriter, VideoWriter_fourcc
 import os
 
 
-FPS = 10
-VIDEO_DIM = (1360, 800)
+DEFAULT_FPS = 10
 
 
-def gen_video(image_folder, fps=10, vformat='mp4'):
+def gen_video(image_folder, fps=DEFAULT_FPS, vformat='mp4'):
     """
     generate video out of all images in a folder and stores it in a _video subfolder
 
@@ -68,20 +67,20 @@ def gen_all_videos(result_folder, fps, vformat='mp4'):
         fps (int): Frames per second
         vformat (str): video format. Can be mp4 or avi
     """
-    for test in os.listdir(result_folder):
-        test_folder = os.path.join(result_folder, test)
-        if os.path.isfile(test_folder):  # skip the statistics files stored in the main folder
+    for sign in os.listdir(result_folder):
+        sign_folder = os.path.join(result_folder, sign)
+        if os.path.isfile(sign_folder):  # skip the statistics files stored in the main folder
             continue
-        for sign in os.listdir(test_folder):
+        for cam in os.listdir(sign_folder):
             # define the folders used for the results
-            current_image_folder = os.path.join(test_folder, sign)
+            current_image_folder = os.path.join(sign_folder, cam)
             gen_video(current_image_folder, fps, vformat)
 
 
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('source', type=str, help='Filepath and name of the results directory')
-    parser.add_argument('-fps', type=int, help='Frames per Second', default=10)
+    parser.add_argument('-fps', type=int, help='Frames per Second', default=DEFAULT_FPS)
     parser.add_argument('-format', type=str, help='Video Format (mp4 or avi)', default='mp4')
     args = parser.parse_args()
     gen_video(args.source, args.fps, args.format)

@@ -37,12 +37,12 @@ def cam_lambda(image, img_path, t, logger):
         """
 
     global current_tick
-    img = f'{img_path}/{current_tick:04d}.png'
+    img_name = f'{img_path}/{current_tick:04d}.png'
     # sleep time to give the background processes enough time to store the image of the other images of the same tick
     # on the hard disk
     sleep(t)
-    image.save_to_disk(img)
-    logger.info(f'Saved {img}')
+    image.save_to_disk(img_name)
+    logger.info(f'Saved {img_name}')
 
 
 def carla_init(tick, logger, town=None):

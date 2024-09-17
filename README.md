@@ -52,33 +52,30 @@ This shows all spawnpoints of the current map including their id in the simulato
 to_realtime.py:
 This switches the current world back to realtime mode. This is useful in case a test got interrupted.
 
-## Support
-For small questions or requests, you can send an E-Mail to friedrich.zimmer@arrk-engineering.com.
-
-My company, ARRK Engineering GmbH is an engineering service provider for the automotive industry.
-So, for larger tasks, we can offer a more profound simulation or adaption to specific needs.
-
 ## Roadmap
+Until my Master Thesis is finished end of September 2024, I will continuously update this project. After this it depends on demand and on the time I have got available for implementing improvements.
 
 Some ideas for the future:
 - [ ] Implement Road Signs as actors instead of static objects. This way, also traffic signs with triangular or octogonal shapes can get spawned into a map instead of just using round ones.
 - [ ] Adapt to the new Carla Version based on the Unreal 5 Engine based coming soon
 - [ ] Add more road signs textures (Other german road signs, from different countries and additional adversarial examples)
 - [ ] Depth camera to simulate Radar/Lidar.
-- [ ] Live testing of CV Systems including feedback to simulation (like steering or exposure time settings)
+- [ ] Live testing of CV Systems including feedback to simulation (like acceleration, steering or exposure time settings)
 - [ ] Fisheye postprocessing of images
 - [ ] Using the ExperimentSuite functions of Carla
 
-## Contributing
-If you have got additional adversarial examples, I'm always interested in adding them. If you want to implement some ideas mentioned
+## Support
+For small questions or requests, you can send an E-Mail to friedrich.zimmer@arrk-engineering.com.
 
+My employer, ARRK Engineering GmbH is an engineering service provider for the automotive industry.
+For larger tasks, we can offer a more profound simulation or adaption to specific needs.
+
+## Contributing
+If you have got additional adversarial examples, I'm always interested in adding them. If you want to implement some ideas mentioned you are free to create a branch and I will eventually merge this into the main branch.
 
 ## License
 This project is licensed under the MIT license.
 Copyright 2024 (c) Friedrich Zimmer at ARRK Engineering
-
-## Project status
-Until my Master Thesis is finsihed end of August 2024, I will continuously update this project. After this it depends on demand and on the time I have got available for implementing improvements.
 
 ***
 

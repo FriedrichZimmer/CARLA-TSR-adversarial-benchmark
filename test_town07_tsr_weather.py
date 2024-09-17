@@ -22,30 +22,35 @@ cycles = 498
 # y_cam = 800
 
 # list of cameras. Full list can be imported/copied from camera_utils.py
-camera_tests = ["01_default_new"]
+camera_tests = ['00_default_carla',
+                '01_default_new',
+                '20_low_shutter_speed'
+                ]
 
 # list of textures of traffic signs. Each sign will result in another testrun.
 # Full list can be imported from update_texture.py
-tsr_texture = [['Speed_30', 'images\\textures_traffic_sign\\Eg_Hvb.png']]
+tsr_texture = [['Speed_100', 'images\\textures_traffic_sign\\tempo100_512.png'],
+               ['Speed_100#Speed_120', 'images\\textures_traffic_sign\\morg_100_120.png']
+               ]
 
 def main(result_path):
     """testscript for weather test"""
-    cam = RGBCamera(test_list=camera_tests)
+    cam = RGBCamera(test_list=camera_tests, tick=0.1)
 
     test_name = "t7_tsr_sunset_all"
     test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
     test.set_weather(sunset(0))
     test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
 
-    # test_name = "t7_tsr_foggy_all"
-    # test = CarlaTestRun(cam, name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
-    # test.set_weather(foggy())
-    # test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
+    test_name = "t7_tsr_foggy_all"
+    test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
+    test.set_weather(foggy())
+    test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
 
-    # test_name = "t7_tsr_heavy_rain"
-    # test = CarlaTestRun(cam, name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
-    # test.set_weather(heavy_rain())
-    # test.run_texture(TS_TEXTURE_CIRCLE, ROUND_TRAFFIC_SIGNS_TOWN7)
+    test_name = "t7_tsr_heavy_rain_new"
+    test = CarlaTestRun([cam], name=test_name, spawn_point=spawn_point, ticks=cycles, folder=result_path, town=town)
+    test.set_weather(heavy_rain_new())
+    test.run_texture(tsr_texture, ROUND_TRAFFIC_SIGNS_TOWN7)
 
     test.end()
 

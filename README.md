@@ -52,8 +52,16 @@ This shows all spawnpoints of the current map including their id in the simulato
 to_realtime.py:
 This switches the current world back to realtime mode. This is useful in case a test got interrupted.
 
+## Publication
+```
+F.Zimmer, "Robustheitstests von Computer Vision Systemen für autonomes Fahren gegen Umgebungsangriffe durch CARLA Simulationen", Masterthesis, Hochschule Trier, Germany, 2024
+```
+
 ## Roadmap
-Until my Master Thesis is finished end of September 2024, I will continuously update this project. After this it depends on demand and on the time I have got available for implementing improvements.
+There is currently no plan to put much effort into further developing major features. But for small questions or requests, you can send an E-Mail to friedrich.zimmer@arrk-engineering.com and I can fix things if I can find the time.
+
+My employer, https://engineering.arrk.com/ is an engineering service provider for the automotive industry.
+For specific needs, we are happy to offer the creation a more profound simulation that also creates the input for HiL or SiL testing.
 
 Some ideas for the future:
 - [ ] Implement Road Signs as actors instead of static objects. This way, also traffic signs with triangular or octogonal shapes can get spawned into a map instead of just using round ones.
@@ -63,12 +71,6 @@ Some ideas for the future:
 - [ ] Live testing of CV Systems including feedback to simulation (like acceleration, steering or exposure time settings)
 - [ ] Fisheye postprocessing of images
 - [ ] Using the ExperimentSuite functions of Carla
-
-## Support
-For small questions or requests, you can send an E-Mail to friedrich.zimmer@arrk-engineering.com.
-
-My employer, https://engineering.arrk.com/ is an engineering service provider for the automotive industry.
-For specific needs, we are happy to offer the creation a more profound simulation that also creates the input for HiL or SiL testing.
 
 ## Contributing
 If you have got additional adversarial examples, I'm always interested in adding them. And if you want to implement some of the ideas mentioned, you are free to create a branch and I will eventually merge this into the main branch.
